@@ -2,7 +2,6 @@
 
 namespace ReviewPack\Endpoint;
 
-use ReviewPack\Resources\Company;
 use ReviewPack\Resources\Review;
 use ReviewPack\Resources\ReviewScore;
 
@@ -20,6 +19,8 @@ class ReviewEndpoint extends AbstractEndpoint
      * @return mixed
      * @throws \ReviewPack\Exception\ApiAuthorizationError
      * @throws \ReviewPack\Exception\ApiResponseError
+     *
+     * @doc https://reviewpack.nl/developers-api#newest-reviews
      */
     public function getNewestReviews(string $token, string $secret, string $companyUuid)
     {
