@@ -14,8 +14,8 @@ See also our [official documentation](https://reviewpack.nl/developers-api#list-
 ```php
 $companyEndpoint = new \ReviewPack\Endpoint\CompanyEndpoint();
 $collection = $companyEndpoint->getCompanies(
-    'secret',
     'token',
+    'secret',
 );
 var_dump($collection);
 ```
@@ -44,8 +44,8 @@ See also our [official documentation](https://reviewpack.nl/developers-api#revie
 ```php
 $reviewEndpoint = new \ReviewPack\Endpoint\ReviewEndpoint();
 $scores = $reviewEndpoint->getCompanyReviewScores(
-    'secret',
     'token',
+    'secret',
     'company_uuid'
 );
 var_dump($scores);
@@ -58,8 +58,8 @@ See also our [official documentation](https://reviewpack.nl/developers-api#newes
 ```php
 $reviewEndpoint = new \ReviewPack\Endpoint\ReviewEndpoint();
 $recentReviews = $reviewEndpoint->getNewestReviews(
-    'secret',
     'token',
+    'secret',
     'company_uuid'
 );
 var_dump($recentReviews);
