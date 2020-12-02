@@ -1,0 +1,14 @@
+{
+  "name": "sitepack-io/reviewpack-sdk",
+  "description": "The PHP SDK for the ReviewPack API",
+  "type": "library",
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ReviewPack\\": "src/"
+    }
+  }
+}
