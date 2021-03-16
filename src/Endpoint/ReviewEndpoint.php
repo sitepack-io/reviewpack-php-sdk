@@ -20,7 +20,7 @@ class ReviewEndpoint extends AbstractEndpoint
      * @throws \ReviewPack\Exception\ApiAuthorizationError
      * @throws \ReviewPack\Exception\ApiResponseError
      *
-     * @doc https://reviewpack.nl/developers-api#newest-reviews
+     * @doc https://reviewpack.eu/developers-api#newest-reviews
      */
     public function getNewestReviews(string $token, string $secret, string $companyUuid)
     {

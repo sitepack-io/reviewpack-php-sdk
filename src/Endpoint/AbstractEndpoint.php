@@ -17,7 +17,7 @@ abstract class AbstractEndpoint
     const METHOD_POST = 'POST';
     const METHOD_GET = 'GET';
 
-    private const API_ROOT = 'https://reviewpack.nl';
+    private const API_ROOT = 'https://api.reviewpack.eu';
 
     /**
      * @param string $type
