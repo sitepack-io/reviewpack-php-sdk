@@ -23,6 +23,7 @@ class InviteEndpoint extends AbstractEndpoint
      * @param string|null $lastName
      * @param \DateTimeImmutable|null $plannedDate
      * @param int|null $totalOrderAmountCents
+     * @param string|null $mailGreeting
      * @return mixed
      * @throws \ReviewPack\Exception\ApiAuthorizationError
      * @throws \ReviewPack\Exception\ApiResponseError
@@ -35,7 +36,8 @@ class InviteEndpoint extends AbstractEndpoint
         string $firstName,
         ?string $lastName = null,
         ?\DateTimeImmutable $plannedDate = null,
-        ?int $totalOrderAmountCents = null
+        ?int $totalOrderAmountCents = null,
+        ?string $mailGreeting = null
     )
     {
         $postData = [
@@ -46,6 +48,9 @@ class InviteEndpoint extends AbstractEndpoint
 
         if (!\is_null($lastName)) {
             $postData['last_name'] = $lastName;
+        }
+        if (!\is_null($mailGreeting)) {
+            $postData['mail_greeting'] = $mailGreeting;
         }
         if (!\is_null($plannedDate)) {
             $postData['date'] = $plannedDate->format('Y-m-d H:i:s');
