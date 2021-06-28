@@ -4,6 +4,7 @@ namespace ReviewPack\Endpoint;
 
 use ReviewPack\Resources\Company;
 use ReviewPack\Resources\Invite;
+use ReviewPack\ValueObjects\ReferenceCollection;
 
 /**
  * Class InviteEndpoint
@@ -24,6 +25,7 @@ class InviteEndpoint extends AbstractEndpoint
      * @param \DateTimeImmutable|null $plannedDate
      * @param int|null $totalOrderAmountCents
      * @param string|null $mailGreeting
+     * @param ReferenceCollection|null $referenceCollection
      * @return mixed
      * @throws \ReviewPack\Exception\ApiAuthorizationError
      * @throws \ReviewPack\Exception\ApiResponseError
@@ -37,7 +39,8 @@ class InviteEndpoint extends AbstractEndpoint
         ?string $lastName = null,
         ?\DateTimeImmutable $plannedDate = null,
         ?int $totalOrderAmountCents = null,
-        ?string $mailGreeting = null
+        ?string $mailGreeting = null,
+        ?ReferenceCollection $referenceCollection = null
     )
     {
         $postData = [
@@ -59,6 +62,10 @@ class InviteEndpoint extends AbstractEndpoint
             $postData['total_order_cents'] = $totalOrderAmountCents;
         }
 
+        if ($referenceCollection instanceof ReferenceCollection) {
+            $postData = $this->mapReferenceCollectionToData($postData, $referenceCollection);
+        }
+
         $data = $this->executeApiCall(
             AbstractEndpoint::METHOD_POST,
             '/api/invites/add',
@@ -69,6 +76,32 @@ class InviteEndpoint extends AbstractEndpoint
         );
 
         return $this->mapDataToObject($data, Invite::class);
+    }
+
+    /**
+     * @param array $postData
+     * @param ReferenceCollection $referenceCollection
+     * @return array
+     */
+    private function mapReferenceCollectionToData(array $postData, ReferenceCollection $referenceCollection): array
+    {
+        if (!empty($referenceCollection->getFirstReference())) {
+            $postData['reference_one'] = \trim($referenceCollection->getFirstReference());
+        }
+        if (!empty($referenceCollection->getSecondReference())) {
+            $postData['reference_two'] = \trim($referenceCollection->getSecondReference());
+        }
+        if (!empty($referenceCollection->getThirdReference())) {
+            $postData['reference_three'] = \trim($referenceCollection->getThirdReference());
+        }
+        if (!empty($referenceCollection->getFourthReference())) {
+            $postData['reference_four'] = \trim($referenceCollection->getFourthReference());
+        }
+        if (!empty($referenceCollection->getFifthReference())) {
+            $postData['reference_five'] = \trim($referenceCollection->getFifthReference());
+        }
+
+        return $postData;
     }
 
 }
