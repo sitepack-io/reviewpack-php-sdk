@@ -12,7 +12,7 @@ class ReferenceCollection
     /**
      * @var mixed
      */
-    private array $references = [];
+    private $references = []; // TODO: type hint array
 
     /**
      * Construct the collection, enter up to 5 custom strings by using the splat operator.
